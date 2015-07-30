@@ -40,7 +40,7 @@ class submit:
 class currency:
     def GET(self, curr):
         curr = curr.upper()
-        req = urllib.urlopen("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml")
+        req = urllib.urlopen("http://localhost:8888")
         root = ET.fromstring(req.read())
         query = ".//*[@currency='" + curr + "']"
 

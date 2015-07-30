@@ -1,0 +1,4 @@
+### Run the app
+python server.py
+
+### Probably does not work (no python, no libraries, 8080 not available, unix-specific fs paths, ...)
