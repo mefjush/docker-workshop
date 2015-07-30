@@ -200,74 +200,6 @@
         </section>  
 
         <section>
-          <h2>Adhese Dockerized</h2>
-
-          <pre><code data-trim contenteditable class="sh">
-git clone git@hanz:docker
-cd docker
-cat README
-./build_all.sh
-./restart_all.sh
-	  </code></pre>
-
-          <p><img src="img/diagram.png"/></p>
-        </section>
- 
-        <section>
-          <h2>Demo</h2>
-          <h4>adhese</h4>
-        </section>  
-
-        <section>
-          <h2>Build</h2>
-          <ul>
-            <li><strong>Plain Dockerfiles</strong> (volume containers)</li> 
-            <li><strong>Gradle from sources</strong> (adhese, frontend)</li>
-            <li><strong>Gradle from puppet repo</strong> (adserver) - TODO puppetize!</li>
-          </ul>
-        </section> 
-
-        <section>
-          <h2>Run</h2>
-          <p>How to reuse? (e.g. dev, nrc, pebblemedia, ...)</p>
-          <p>We cannot hardcode <i>adhese_app</i> and <i>db</i> together</p>
-          <pre><code data-trim contenteditable>
-docker run -d -p 8080:8080 -p 8443:8443 -p 8000:8000 \
-  --name dev_adhese_app \
-  --volumes-from dev_adhese_data \
-  --link dev_db:db \
-  --link dev_adserver_ssh:adserver_ssh \
-  adhese/adhese_app
-	  </code></pre>
-
-          <ol class="fragment">
-            <li>EXPOSE 3306</li>
-            <li>make use of $DB_PORT_3306_TCP_ADDR</li>
-          </ol>
-        </section> 
-
-        <section>
-          <h2>Currently useful for</h2>
-          <ul>
-             <li>end-to-end system & experiments 
-               <ul>
-                 <li>how does tag.js work?</li> 
-                 <li>how does my imprression end up in the db?</li>
-               </ul>  
-             <li>testing out rotation & template related tickets</li>
-          </ul>
-        </section> 
-
-        <section>
-          <h2>Close, but not there yet</h2>
-          <ul>
-             <li>automated, light dev db setup (geb)</li>
-             <li>testing auto delivery (geb + time machine)</li>
-             <li>local mirrors (docker.adhese.org hardcoded everywhere)</li>  
-          </ul>
-        </section> 
-
-        <section>
           <h2>Links</h2>
           <ul>
             <li><a href="https://www.youtube.com/watch?v=Q5POuMHxW-0">Presentation by Solomon Hykes</a></li>
@@ -279,17 +211,6 @@ docker run -d -p 8080:8080 -p 8443:8443 -p 8000:8000 \
             <li><a href="https://linuxcontainers.org/">Linux Containers (LXC)</a>
           </ul>
           
-        </section>
-
-        <section>
-          <h2>Need more?</h2>
-
-          <p>Docker Belgium Meetup group</p>
-          <p><i><a href="http://www.meetup.com/Docker-Belgium/events/196775432/">Docker on Mesos</a></i></p>
-
-          <p><strong>this Wednesday</strong>, 10 Sept 2014, 7:30 PM</p>
-          <p>Boulevard Louis Schmidt 29, Brussels</p>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2520.2274922853644!2d4.399289500000001!3d50.82695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c4b5df2b1e6d%3A0x7fcad501076a766e!2sBoulevard+Louis+Schmidt+29%2C+1040+Etterbeek%2C+Belgium!5e0!3m2!1sen!2s!4v1410108884981" width="600" height="400" frameborder="0" style="border:0"></iframe>
         </section>
 
         <section>
