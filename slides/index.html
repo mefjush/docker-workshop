@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Docker</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Docker</h1>
+          <p><img src="img/docker-whale.png"/><p>
+          <ul>
+            <li>Created by: <a href="https://www.dotcloud.com/">dotCloud</a></li>
+            <li>Stable since: 9 Jun 2013 (v. 1.0.0)</li>
+          </ul>
+          <p> </p>
+          <p>Some slides borrowed from <a href="http://pointful.github.io/docker-intro">here.</a> 
+        </section>
+
+        <section>
+          <h2>dotCloud - a hosting company</h2>
+          <h4>Any problems there?</h4>       
+
+          <div class="fragment">
+            <ul>
+              <li>Are all dependencies installed?</li>
+              <li>Are Java, lib c, python, ... in correct versions?</li>
+              <li>Aren't libs conflicting with each other?</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>The Challenge</h2>
+          <p>
+            <img src="img/the-challenge.png">
+          </p>
+        </section>
+        
+        <section>
+          <h2>The Matrix from Hell</h2>
+          <p>
+            <img src="img/the-matrix-from-hell.png">
+          </p>
+        </section>
+        
+        <section>
+          <h2>Cargo Transport Pre-1960</h2>
+          <p>
+            <img src="img/cargo-transport-pre-1960.png">
+          </p>
+        </section>
+        
+        <section>
+          <h2>Also a Matrix from Hell</h2>
+          <p>
+            <img src="img/also-a-matrix-from-hell.png">
+          </p>
+        </section>
+        
+        <section>
+          <h2>Solution: Intermodal Shipping Container</h2>
+          <p>
+            <img src="img/intermodal-shipping-container.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>Hey! But we already have ways to standardize deploy artifacts!</h3>
+        </section>
+
+        <section>
+          <h2>*.jar approach</h2>
+
+          <ul>
+            <div class="fragment">
+              <li>Pros</li>
+              <ul>
+                <li>Defines java dependencies</li>
+                <li>Relatively small</li>
+                <li>Quick to run</li>
+              </ul>
+            </div>
+            <div class="fragment">
+            <li>Cons</li>
+              <ul>
+                <li>Only for java world</li>
+                <li>Needs a lot of setup to run <br/>(java version, file paths, db, config files, external libs, ...)</li>
+              </ul>
+            </div>
+          </ul>
+        </section>
+
+        <section>
+          <h2>VM approach</h2>
+
+          <ul>
+            <div class="fragment">
+              <li>Pros</li>
+              <ul>
+                <li>Defines all dependencies (libs, fs structure, ...)</li>
+                <li>No setup needed to run</li>
+                <li>VM Sandbox</li>
+              </ul>
+            </div>  
+            <div class="fragment">
+              <li>Cons</li>
+              <ul>
+                <li>Image is large</li>
+                <li>Long bootup time</li>
+                <li>Try to run 5 of them on your laptop</li>
+              </ul>
+            </div>  
+          </ul>
+        </section>
+              
+        <section>
+          <h2>Is there anything in the middle?</h2>
+          <ul>
+            <li>Light</li>
+            <li>No setup to run</li>
+            <li>Sandboxed</li>
+          </ul>
+          <p> </p>
+          <h4 class="fragment">Answer: <span class="fragment">D<span class="fragment">O<span class="fragment">C<span class="fragment">KER</span></span></span></span></h4>
+        </section>
+
+        <section>
+          <h2>Docker is a Container System for Code</h2>
+          <p>
+            <img src="img/shipping-container-for-code.png">
+          </p>
+        </section>
+        
+        <section>
+          <h3>Matrix from Hell solved!</h3>
+          <p>
+            <img src="img/eliminates-matrix-from-hell.png">
+          </p>
+        </section>
+
+        <section>
+          <h2><a href="https://www.docker.com/whatisdocker/">Docker vs VM</a></h2>
+          <h4><a href="https://www.docker.com/whatisdocker/">click</a></h4>
+        </section>
+        
+        <section>
+          <h2>Why it Works: Separation of Concerns</h2>
+          <p>
+            <img src="img/separation-of-concerns.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>Demo</h2>
+          <h4>intro to Docker</h4>
+        </section>  
+
+        <section>
+          <h2>Image best practices</h2>
+          <ul>
+            <li>stateless (need state -> volume)</li>
+            <li>minimalistic (no unnecessary stuff)</li>
+            <li>no SSHD "for debugging" (contraversive)</li>
+            <li>one process per container (contraversive)</li>
+          </ul>
+        </section>  
+
+        <section>
+          <h2>Adhese Dockerized</h2>
+
+          <pre><code data-trim contenteditable class="sh">
+git clone git@hanz:docker
+cd docker
+cat README
+./build_all.sh
+./restart_all.sh
+	  </code></pre>
+
+          <p><img src="img/diagram.png"/></p>
+        </section>
+ 
+        <section>
+          <h2>Demo</h2>
+          <h4>adhese</h4>
+        </section>  
+
+        <section>
+          <h2>Build</h2>
+          <ul>
+            <li><strong>Plain Dockerfiles</strong> (volume containers)</li> 
+            <li><strong>Gradle from sources</strong> (adhese, frontend)</li>
+            <li><strong>Gradle from puppet repo</strong> (adserver) - TODO puppetize!</li>
+          </ul>
+        </section> 
+
+        <section>
+          <h2>Run</h2>
+          <p>How to reuse? (e.g. dev, nrc, pebblemedia, ...)</p>
+          <p>We cannot hardcode <i>adhese_app</i> and <i>db</i> together</p>
+          <pre><code data-trim contenteditable>
+docker run -d -p 8080:8080 -p 8443:8443 -p 8000:8000 \
+  --name dev_adhese_app \
+  --volumes-from dev_adhese_data \
+  --link dev_db:db \
+  --link dev_adserver_ssh:adserver_ssh \
+  adhese/adhese_app
+	  </code></pre>
+
+          <ol class="fragment">
+            <li>EXPOSE 3306</li>
+            <li>make use of $DB_PORT_3306_TCP_ADDR</li>
+          </ol>
+        </section> 
+
+        <section>
+          <h2>Currently useful for</h2>
+          <ul>
+             <li>end-to-end system & experiments 
+               <ul>
+                 <li>how does tag.js work?</li> 
+                 <li>how does my imprression end up in the db?</li>
+               </ul>  
+             <li>testing out rotation & template related tickets</li>
+          </ul>
+        </section> 
+
+        <section>
+          <h2>Close, but not there yet</h2>
+          <ul>
+             <li>automated, light dev db setup (geb)</li>
+             <li>testing auto delivery (geb + time machine)</li>
+             <li>local mirrors (docker.adhese.org hardcoded everywhere)</li>  
+          </ul>
+        </section> 
+
+        <section>
+          <h2>Links</h2>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=Q5POuMHxW-0">Presentation by Solomon Hykes</a></li>
+            <li><a href="https://www.youtube.com/watch?v=VeiUjkiqo9E">Docker video tutorial</a></li>
+            <li><a href="http://blog.sequenceiq.com/blog/2014/07/05/docker-debug-with-nsenter-on-boot2docker/">Docker debugging with nsenter</a></li>
+            <li><a href="http://shipyard-project.com/">Shipyard project</a></li>
+            <li><a href="http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil">SSHD in Docker containers? You're doing it wrong!</a></li>
+            <li><a href="https://news.ycombinator.com/item?id=7950326">SSH Flamewar</a></li>
+            <li><a href="https://linuxcontainers.org/">Linux Containers (LXC)</a>
+          </ul>
+          
+        </section>
+
+        <section>
+          <h2>Need more?</h2>
+
+          <p>Docker Belgium Meetup group</p>
+          <p><i><a href="http://www.meetup.com/Docker-Belgium/events/196775432/">Docker on Mesos</a></i></p>
+
+          <p><strong>this Wednesday</strong>, 10 Sept 2014, 7:30 PM</p>
+          <p>Boulevard Louis Schmidt 29, Brussels</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2520.2274922853644!2d4.399289500000001!3d50.82695!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c4b5df2b1e6d%3A0x7fcad501076a766e!2sBoulevard+Louis+Schmidt+29%2C+1040+Etterbeek%2C+Belgium!5e0!3m2!1sen!2s!4v1410108884981" width="600" height="400" frameborder="0" style="border:0"></iframe>
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+        </section>  
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        minScale: 0.2,
+        maxScale: 1.2,
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

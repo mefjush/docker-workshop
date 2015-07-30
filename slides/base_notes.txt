@@ -1,0 +1,29 @@
+docker run ubuntu echo "Hello World"
+docker run -i -t ubuntu /bin/bash
+
+### what if we change the state?
+docker run ubuntu touch aaa
+docker run ubuntu ls
+### (oops! no aaa file!)
+### let's find out what happened to our container
+
+docker ps -a
+docker diff [CONTAINER_ID]
+
+### we can commit our change
+docker commit [CONTAINER_ID] mefju/myubuntu
+docker push mefju/myubuntu
+goto: https://registry.hub.docker.com/u/mefju/myubuntu/
+
+### we can now use our own base image
+docker run -i -t mefju/myubuntu /bin/bash 
+
+### let's change it a bit more!
+vim aaa
+sudo apt-get update
+sudo apt-get install vim
+
+### what actually happened after installing vim?
+docker diff [CONTAINER_ID]
+docker commit -m "installed vim" [CONTAINER_ID] mefju/myubuntu
+docker push mefju/myubuntu
