@@ -11,16 +11,21 @@ render = web.template.render('templates/')
 
 urls = (
     '/', 'index',
-    '/submit', 'submit',
-    '/eur/(.+)', 'currency'
+    '/favicons', 'favicons',
+    '/collect', 'collect',
+    '/convert', 'convert'
 )
 
 class index:        
     def GET(self):
-        files = [ f for f in listdir(static_dir) if isfile(join(static_dir, f)) ]
-        return render.index(files)
+        return render.index()
 
-class submit:
+class favicons:
+    def GET(self):
+        files = [ f for f in listdir(static_dir) if isfile(join(static_dir, f)) ]
+        return render.favicons(files)
+
+class collect:
     def GET(self):
         url = web.input(url="").url
         url = url if ("http" in url) else ("http://" + url) 
@@ -28,18 +33,22 @@ class submit:
        
         filename = reduce(lambda url, s : url.replace(s, ""), ["http://", "https://", "www.", "/"], url)
         urllib.urlretrieve(url + "favicon.ico", join(static_dir, filename))
-        raise web.redirect("/")
+        raise web.redirect("/favicons")
 
-class currency:
-    def GET(self, curr):
-        currency = curr.upper()
+class convert:
+    def GET(self):
+        data = web.input(currency="USD", amount="1")
+        currency = data.currency.upper()
+        amount = data.amount
+
         req = urllib.urlopen(rates_url)
         xmlRoot = ET.fromstring(req.read())
         query = ".//*[@currency='" + currency + "']"
         nodes = xmlRoot.findall(query)
 
-        value = nodes[0].get('rate') if (len(nodes) > 0) else "unknown"
-        return "EUR/" + currency + " = " + value 
+        rate = nodes[0].get('rate') if (len(nodes) > 0) else 0
+        converted = str(float(amount) * float(rate))
+        return amount + " EUR = " + converted + " " + currency
 
 if __name__ == "__main__":
     app = web.application(urls, globals())

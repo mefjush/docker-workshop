@@ -1,0 +1,14 @@
+$def with (favicons)
+
+<html>
+<body>
+
+<h2>Your favicon collection!</h2>
+
+$for f in favicons: 
+    <div> 
+        <img src="/static/$f"/>
+        <p>$f</p>
+    </div>
+</body>
+</html>
