@@ -1,12 +1,10 @@
 import web
 import os
-from os import listdir
-from os.path import isfile, join
 import urllib
 import xml.etree.ElementTree as ET
 
 rates_url = os.environ.get('RATES_URL', "http://localhost:8888")
-static_dir = join(os.path.dirname(os.path.realpath(__file__)), "static")
+static_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "static")
 render = web.template.render('templates/')
 
 urls = (
@@ -22,7 +20,7 @@ class index:
 
 class favicons:
     def GET(self):
-        files = [ f for f in listdir(static_dir) if isfile(join(static_dir, f)) ]
+        files = [ f for f in os.listdir(static_dir) if os.path.isfile(os.path.join(static_dir, f)) ]
         return render.favicons(files)
 
 class collect:
@@ -32,7 +30,7 @@ class collect:
         url = url if (url.endswith("/")) else (url + "/")
        
         filename = reduce(lambda url, s : url.replace(s, ""), ["http://", "https://", "www.", "/"], url)
-        urllib.urlretrieve(url + "favicon.ico", join(static_dir, filename))
+        urllib.urlretrieve(url + "favicon.ico", os.path.join(static_dir, filename))
         raise web.redirect("/favicons")
 
 class convert:
