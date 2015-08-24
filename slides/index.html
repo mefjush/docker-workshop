@@ -4,28 +4,29 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Docker</title>
+    <title>reveal.js - The HTML Presentation Framework</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="css/reveal.min.css">
-    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
 
-    <!-- For syntax highlighting -->
+    <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
-    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <!-- Printing and PDF exports -->
     <script>
-      if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-      }
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
 
     <!--[if lt IE 9]>
@@ -39,28 +40,21 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
+        
         <section>
           <h1>Docker</h1>
+          <h2>Hands-on session</h2>
           <p><img src="img/docker-whale.png"/><p>
-          <ul>
-            <li>Created by: <a href="https://www.dotcloud.com/">dotCloud</a></li>
-            <li>Stable since: 9 Jun 2013 (v. 1.0.0)</li>
-          </ul>
-          <p> </p>
-          <p>Some slides borrowed from <a href="http://pointful.github.io/docker-intro">here.</a> 
         </section>
 
         <section>
-          <h2>dotCloud - a hosting company</h2>
-          <h4>Any problems there?</h4>       
-
-          <div class="fragment">
-            <ul>
-              <li>Are all dependencies installed?</li>
-              <li>Are Java, lib c, python, ... in correct versions?</li>
-              <li>Aren't libs conflicting with each other?</li>
-            </ul>
-          </div>
+          <h1>About / Disclaimer</h1>
+                  
+          
+          <p>Workshop initially prepared internally at <a href="http://adhese.com">Adhese</a> </p>
+          <p><img src="img/adhese.png"/> </p>
+          <p>Some pics borrowed from the <a href="http://pointful.github.io/docker-intro"> presentation</a> by John Lewis.</p>
+          
         </section>
 
         <section>
@@ -222,37 +216,28 @@
     </div>
 
     <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.min.js"></script>
+    <script src="js/reveal.js"></script>
 
     <script>
 
-      // Full list of configuration options available here:
+      // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-
-        minScale: 0.2,
-        maxScale: 1.2,
-
         controls: true,
         progress: true,
         history: true,
         center: true,
 
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-        // Parallax scrolling
-        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-        // parallaxBackgroundSize: '2100px 900px',
-
-        // Optional libraries used to extend on reveal.js
+        // Optional reveal.js plugins
         dependencies: [
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
         ]
       });
 
