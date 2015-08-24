@@ -53,7 +53,7 @@
           
           <p>Workshop initially prepared internally at <a href="http://adhese.com">Adhese</a> </p>
           <p><img src="img/adhese.png"/> </p>
-          <p>Some pics borrowed from the <a href="http://pointful.github.io/docker-intro"> presentation</a> by John Lewis.</p>
+          <p>Some pics borrowed from a <a href="http://pointful.github.io/docker-intro"> presentation</a> by John Lewis.</p>
           
         </section>
 
@@ -93,66 +93,6 @@
         </section>
 
         <section>
-          <h3>Hey! But we already have ways to standardize deploy artifacts!</h3>
-        </section>
-
-        <section>
-          <h2>*.jar approach</h2>
-
-          <ul>
-            <div class="fragment">
-              <li>Pros</li>
-              <ul>
-                <li>Defines java dependencies</li>
-                <li>Relatively small</li>
-                <li>Quick to run</li>
-              </ul>
-            </div>
-            <div class="fragment">
-            <li>Cons</li>
-              <ul>
-                <li>Only for java world</li>
-                <li>Needs a lot of setup to run <br/>(java version, file paths, db, config files, external libs, ...)</li>
-              </ul>
-            </div>
-          </ul>
-        </section>
-
-        <section>
-          <h2>VM approach</h2>
-
-          <ul>
-            <div class="fragment">
-              <li>Pros</li>
-              <ul>
-                <li>Defines all dependencies (libs, fs structure, ...)</li>
-                <li>No setup needed to run</li>
-                <li>VM Sandbox</li>
-              </ul>
-            </div>  
-            <div class="fragment">
-              <li>Cons</li>
-              <ul>
-                <li>Image is large</li>
-                <li>Long bootup time</li>
-                <li>Try to run 5 of them on your laptop</li>
-              </ul>
-            </div>  
-          </ul>
-        </section>
-              
-        <section>
-          <h2>Is there anything in the middle?</h2>
-          <ul>
-            <li>Light</li>
-            <li>No setup to run</li>
-            <li>Sandboxed</li>
-          </ul>
-          <p> </p>
-          <h4 class="fragment">Answer: <span class="fragment">D<span class="fragment">O<span class="fragment">C<span class="fragment">KER</span></span></span></span></h4>
-        </section>
-
-        <section>
           <h2>Docker is a Container System for Code</h2>
           <p>
             <img src="img/shipping-container-for-code.png">
@@ -167,20 +107,23 @@
         </section>
 
         <section>
-          <h2><a href="https://www.docker.com/whatisdocker/">Docker vs VM</a></h2>
-          <h4><a href="https://www.docker.com/whatisdocker/">click</a></h4>
+          <h4>But... wait a second...</h4>
+          <h3>Virtual Machines do exactly the same!</h3>
         </section>
-        
+
         <section>
-          <h2>Why it Works: Separation of Concerns</h2>
+          <h1><a href="https://www.docker.com/whatisdocker/">Docker vs VM</a></h1>
+        </section>
+
+        <section>
+          <h2>No guest OS? How come?<h2>
           <p>
-            <img src="img/separation-of-concerns.png">
+            <img src="img/docker-linux.png">
           </p>
         </section>
 
         <section>
-          <h2>Demo</h2>
-          <h4>intro to Docker</h4>
+          <h1>Workshop</h1>
         </section>  
 
         <section>
