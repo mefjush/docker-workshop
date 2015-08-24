@@ -1,7 +1,6 @@
 import web
 import os
 import urllib
-import xml.etree.ElementTree as ET
 
 rates_url = os.environ.get('RATES_URL', "http://localhost:8888")
 static_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "static")
@@ -36,17 +35,13 @@ class collect:
 class convert:
     def GET(self):
         data = web.input(currency="USD", amount="1")
-        currency = data.currency.upper()
+        currency = data.currency.lower()
         amount = data.amount
 
-        req = urllib.urlopen(rates_url)
-        xmlRoot = ET.fromstring(req.read())
-        query = ".//*[@currency='" + currency + "']"
-        nodes = xmlRoot.findall(query)
-
-        rate = nodes[0].get('rate') if (len(nodes) > 0) else 0
+        req = urllib.urlopen(rates_url + "/rates/eur/" + currency)
+        rate = req.read() 
         converted = str(float(amount) * float(rate))
-        return amount + " EUR = " + converted + " " + currency
+        return amount + " EUR = " + converted + " " + currency.upper()
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
