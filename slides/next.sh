@@ -1,0 +1,4 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+timestamp=$(date +%s)
+echo $timestamp next > slide_control.txt

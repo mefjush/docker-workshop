@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -27,6 +28,33 @@
       link.type = 'text/css';
       link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <script>
+      var lastTimestamp = null;
+
+      var xmlhttp = new XMLHttpRequest();
+      var timer = setInterval(function() { 
+          xmlhttp.onreadystatechange=function() {
+              if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                  var s = xmlhttp.responseText.split(" ");
+                  var timestamp = s[0];
+                  var action = s[1];
+                  if (lastTimestamp && lastTimestamp < timestamp) {
+                      console.log(action);
+                      if (action.indexOf("prev") > -1) {
+                          Reveal.prev();
+                      } else {
+                          Reveal.next();
+                      }
+                  }
+                  lastTimestamp = timestamp;
+              }
+          }
+          xmlhttp.open("GET", "slide_control.txt", true);
+          xmlhttp.send();
+      }, 150);
+      
     </script>
 
     <!--[if lt IE 9]>
@@ -49,9 +77,8 @@
 
         <section>
           <h1>About / Disclaimer</h1>
-                  
           
-          <p>Workshop initially prepared internally at <a href="http://adhese.com">Adhese</a> </p>
+          <p>Workshop initially prepared at <a href="http://adhese.com">Adhese</a> </p>
           <p><img src="img/adhese.png"/> </p>
           <p>Some pics borrowed from a <a href="http://pointful.github.io/docker-intro"> presentation</a> by John Lewis.</p>
           
@@ -113,6 +140,10 @@
 
         <section>
           <h1><a href="https://www.docker.com/whatisdocker/">Docker vs VM</a></h1>
+          <p>
+            <img src="img/what-is-docker.png" width="400"/>
+            <img src="img/what-is-vm.png" width="400"/>
+          </p>
         </section>
 
         <section>
@@ -127,8 +158,41 @@
         </section>
 
         <section>
+          <h1>Boot2docker</h1>
+          <p>A minimalistic VM running on top of ios/win</p>
+        </section>
+
+        <section>
           <h1>Workshop</h1>
         </section>  
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Hello World
+docker run ubuntu echo "Hello World"
+docker ps -a
+	   </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Interactive mode with tty
+docker run -i -t ubuntu /bin/bash
+	   </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Let's change the state
+docker run ubuntu touch aaa
+docker run ubuntu ls                  
+	   </code><code data-trim contenteditable class="bash fragment">
+###(oops! no aaa file!)               
+	   </code></pre>
+           <div class="spacer"></div>
+        </section>
 
         <section>
           <h2>Image best practices</h2>
