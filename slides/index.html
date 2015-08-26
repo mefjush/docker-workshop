@@ -192,20 +192,101 @@ docker run --name boring_wozniak ubuntu ls
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Interactive mode with tty
-docker run -i -t ubuntu /bin/bash
+### Let's change the state
+docker run ubuntu touch new_file
+docker run ubuntu ls                  
+	   </code><code data-trim contenteditable class="bash fragment">
+###(oops! there's no new_file!)               
 	   </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Let's change the state
-docker run ubuntu touch aaa
-docker run ubuntu ls                  
-	   </code><code data-trim contenteditable class="bash fragment">
-###(oops! no aaa file!)               
-	   </code></pre>
+### Where's my new_file?
+docker ps -a
+docker diff [CONTAINER NAME/ID]             
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### I want my file back!            
+docker commit [CONTAINER_ID] [your_name]/ubuntu_with_new_file
+docker run [your_name]/ubuntu_with_new_file ls       
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Repositories            
+docker push [your_name]/ubuntu_with_new_file
+# goto: https://hub.docker.com/r/mefju/ubuntu_with_new_file/
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Interactive mode with tty
+docker run -i -t ubuntu /bin/bash
+vim aaa
+           </code><code data-trim contenteditable class="bash fragment">
+###(ooops! no vim!)
+sudo apt-get update
+sudo apt-get install vim            
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Find all the filesystem changes introduced by installing vim
+           </code><code data-trim contenteditable class="bash fragment">
+docker ps -a
+docker diff [CONTAINER_ID]         
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Dockerfile
+cd workshop/01_dockerfile
+cat Dockerfile
+
+#TODO: copy some_file.txt to your docker image  
+#see: https://docs.docker.com/reference/builder/#copy
+
+docker build -t workshop/01_dockerfile .
+docker run workshop/01_dockerfile cat some_file.txt
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### A simple python app
+cd apps/portal
+cat readme.txt
+python server.py  #no way it will work
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Dockerize it!
+cd workshop/02_app
+cp -r ../../apps/portal .
+
+#TODO fix the Dockerfile
+
+docker build -t workshop/02_app .
+docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
+           </code></pre>
            <div class="spacer"></div>
         </section>
 

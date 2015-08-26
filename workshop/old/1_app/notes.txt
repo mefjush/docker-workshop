@@ -1,0 +1,8 @@
+### Run the app
+cd apps/fav_collector
+python server.py
+
+cd apps/rates
+python server.py 8888
+
+### Probably does not work (no python, no libraries, 8080 not available, unix-specific fs paths, ...)
