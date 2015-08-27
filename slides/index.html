@@ -286,6 +286,29 @@ cp -r ../../apps/portal .
 
 docker build -t workshop/02_app .
 docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
+#If it works: you'll see: 'http://0.0.0.0:8080/' 
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+#TODO daemonize
+           </code></pre>
+           <div class="spacer"></div>
+
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### How to access it?
+#TODO modify Dockerfile to EXPOSE a port
+
+//-p //-P do I need Expose at all? 
+
+docker build -t workshop/02_app .
+docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
+#If it works: you'll see: 'http://0.0.0.0:8080/'
            </code></pre>
            <div class="spacer"></div>
         </section>
