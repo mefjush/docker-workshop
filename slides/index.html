@@ -257,7 +257,7 @@ docker diff [CONTAINER_ID]
 cd workshop/01_dockerfile
 cat Dockerfile
 
-#TODO: copy some_file.txt to your docker image  
+#TODO: let's COPY some_file.txt to your docker image  
 #see: https://docs.docker.com/reference/builder/#copy
 
 docker build -t workshop/01_dockerfile .
@@ -268,9 +268,9 @@ docker run workshop/01_dockerfile cat some_file.txt
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### A simple python app
-cd apps/portal
-cat readme.txt
+### Dockerize a simple currency conversion app
+cd workshop/02_rates
+cat rates/readme.txt
 python server.py  #no way it will work
            </code></pre>
            <div class="spacer"></div>
@@ -279,14 +279,13 @@ python server.py  #no way it will work
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Dockerize it!
-cd workshop/02_app
-cp -r ../../apps/portal .
-
-#TODO fix the Dockerfile
+#TODO fix the Dockerfile # http://link!!!!
 
 docker build -t workshop/02_app .
 docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
 #If it works: you'll see: 'http://0.0.0.0:8080/' 
+           </code><code data-trim contenteditable class="bash fragment">
+#TODO discuss Dockerfile instructions
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -296,7 +295,6 @@ docker run --name app workshop/02_app #will the logs show? we don;t need -d do w
 #TODO daemonize
            </code></pre>
            <div class="spacer"></div>
-
         </section>
 
         <section>
@@ -309,6 +307,48 @@ docker run --name app workshop/02_app #will the logs show? we don;t need -d do w
 docker build -t workshop/02_app .
 docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
 #If it works: you'll see: 'http://0.0.0.0:8080/'
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Portal Dockerfile
+cd workshop/03_portal
+#TODO look at Dockerfile - anything wrong with it? 
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Super-Dockerfile
+cd workshop/04_ubuntu_python_web
+#TODO create base Dockerfile
+#TODO modify 02_rates and 03_portal to use it
+#TODO ./build and ./run
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Linking
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Volumes
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Reusing
+- wiremock from repo
            </code></pre>
            <div class="spacer"></div>
         </section>
