@@ -268,10 +268,10 @@ docker run workshop/01_dockerfile cat some_file.txt
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Dockerize a simple currency conversion app
+### A simple currency conversion app
 cd workshop/02_rates
 cat rates/readme.txt
-python server.py  #no way it will work
+python rates/server.py  #no way it will work
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -281,11 +281,11 @@ python server.py  #no way it will work
 ### Dockerize it!
 #TODO fix the Dockerfile # http://link!!!!
 
-docker build -t workshop/02_app .
-docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
+docker build -t workshop/rates .
+docker run workshop/rates #will the logs show? we don;t need -d do we?
 #If it works: you'll see: 'http://0.0.0.0:8080/' 
            </code><code data-trim contenteditable class="bash fragment">
-#TODO discuss Dockerfile instructions
+#TODO discuss Dockerfile instruction order
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -293,6 +293,8 @@ docker run --name app workshop/02_app #will the logs show? we don;t need -d do w
         <section>
            <pre><code data-trim contenteditable class="bash">
 #TODO daemonize
+docker run -d workshop/rates
+docker ps
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -303,10 +305,6 @@ docker run --name app workshop/02_app #will the logs show? we don;t need -d do w
 #TODO modify Dockerfile to EXPOSE a port
 
 //-p //-P do I need Expose at all? 
-
-docker build -t workshop/02_app .
-docker run --name app workshop/02_app #will the logs show? we don;t need -d do we?
-#If it works: you'll see: 'http://0.0.0.0:8080/'
            </code></pre>
            <div class="spacer"></div>
         </section>
