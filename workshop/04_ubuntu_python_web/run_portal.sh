@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -d -p workshop/portal
+docker run -d -P workshop/portal

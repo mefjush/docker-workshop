@@ -2,7 +2,7 @@ import web
 import os
 import urllib
 
-rates_url = os.environ.get('RATES_URL', "http://localhost:8888")
+rates_url = os.environ.get('RATES_URL', "http://localhost:8080")
 static_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "static")
 render = web.template.render('templates/')
 
@@ -39,6 +39,7 @@ class convert:
         amount = data.amount
 
         req = urllib.urlopen(rates_url + "/rates/eur/" + currency)
+
         rate = req.read() 
         converted = str(float(amount) * float(rate))
         return amount + " EUR = " + converted + " " + currency.upper()

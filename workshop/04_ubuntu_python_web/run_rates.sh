@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -d -p workshop/rates
+docker run -d -P workshop/rates
