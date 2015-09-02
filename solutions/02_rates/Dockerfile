@@ -2,6 +2,6 @@ FROM ubuntu
 RUN apt-get update 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python python-setuptools
 RUN easy_install web.py
-COPY portal portal
-CMD ["python", "-u", "portal/server.py", "8888"]
-EXPOSE 8888
+COPY rates rates
+CMD ["python", "-u", "rates/server.py"]
+EXPOSE 8080

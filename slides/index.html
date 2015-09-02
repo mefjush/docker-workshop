@@ -260,8 +260,8 @@ cat Dockerfile
 #TODO: let's COPY some_file.txt to your docker image  
 #see: https://docs.docker.com/reference/builder/#copy
 
-docker build -t workshop/01_dockerfile .
-docker run workshop/01_dockerfile cat some_file.txt
+docker build -t workshop/dockerfile .
+docker run workshop/dockerfile cat some_file.txt
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -282,7 +282,7 @@ python rates/server.py  #no way it will work
 #TODO fix the Dockerfile # http://link!!!!
 
 docker build -t workshop/rates .
-docker run workshop/rates #will the logs show? we don;t need -d do we?
+docker run -it workshop/rates 
 #If it works: you'll see: 'http://0.0.0.0:8080/' 
            </code><code data-trim contenteditable class="bash fragment">
 #TODO discuss Dockerfile instruction order
@@ -295,6 +295,8 @@ docker run workshop/rates #will the logs show? we don;t need -d do we?
 #TODO daemonize
 docker run -d workshop/rates
 docker ps
+docker logs [CONTAINER_ID]
+#we need to disable python sysout bufferning: python -u server.py 
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -303,8 +305,10 @@ docker ps
            <pre><code data-trim contenteditable class="bash">
 ### How to access it?
 #TODO modify Dockerfile to EXPOSE a port
-
-//-p //-P do I need Expose at all? 
+docker run -d -P workshop/rates
+docker ps
+boot2docker ip
+#access http://[host]:[port]/rates/eur/usd
            </code></pre>
            <div class="spacer"></div>
         </section>

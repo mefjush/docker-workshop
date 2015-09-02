@@ -1,6 +1,6 @@
 ### Dependencies 
 # apt-get update 
-# DEBIAN_FRONTEND=noninteractive apt-get -y install python easy_install
+# DEBIAN_FRONTEND=noninteractive apt-get -y install python python-setuptools
 # easy_install web.py
 
 ### Running

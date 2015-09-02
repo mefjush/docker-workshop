@@ -54,3 +54,5 @@ docs/_build/
 
 # PyBuilder
 target/
+
+/solutions/02_rates/rates
