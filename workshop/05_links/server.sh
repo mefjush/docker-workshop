@@ -5,4 +5,4 @@ echo $URL
 
 export RATES_URL=$URL
 
-python -u portal.sh 8888 
+python -u server.sh 8888 
