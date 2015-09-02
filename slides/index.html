@@ -336,6 +336,16 @@ cd workshop/04_ubuntu_python_web
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Linking
+# https://docs.docker.com/userguide/dockerlinks/
+
+docker run -d --name rates1 workshop/rates        #note no '-P' needed
+docker run -d -P --name portal --link rates1:rates workshop/portal
+docker inspect -f "{{ .HostConfig.Links }}" portal
+
+#Env variables are now available in container:
+#RATES_PORT_8080_TCP_ADDR
+#RATES_PORT_8080_TCP_PORT
+
 + passing env vars
            </code></pre>
            <div class="spacer"></div>
