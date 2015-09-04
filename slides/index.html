@@ -195,9 +195,9 @@ docker run --name boring_wozniak ubuntu ls
 ### Let's change the state
 docker run ubuntu touch new_file
 docker run ubuntu ls                  
-	   </code><code data-trim contenteditable class="bash fragment">
+	         </code><code data-trim contenteditable class="bash fragment">
 ###(oops! there's no new_file!)               
-	   </code></pre>
+	         </code></pre>
            <div class="spacer"></div>
         </section>
 
@@ -338,15 +338,24 @@ cd workshop/04_ubuntu_python_web
 ### Linking
 # https://docs.docker.com/userguide/dockerlinks/
 
-docker run -d --name rates1 workshop/rates        #note no '-P' needed
+docker run -d --name rates1 workshop/rates          #note no '-P' needed
+docker run --link rates1:rates workshop/portal env
+
+cat 05_links/server.sh
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Let's link rates service to portal
+cp 05_links/server.sh 03_portal/portal/
+# TODO use server.sh in portal Dockerfile
+# TODO build
+# TODO run portal linked to rates service 
+           </code><code data-trim contenteditable class="bash fragment">
 docker run -d -P --name portal --link rates1:rates workshop/portal
 docker inspect -f "{{ .HostConfig.Links }}" portal
-
-#Env variables are now available in container:
-#RATES_PORT_8080_TCP_ADDR
-#RATES_PORT_8080_TCP_PORT
-
-+ passing env vars
            </code></pre>
            <div class="spacer"></div>
         </section>
