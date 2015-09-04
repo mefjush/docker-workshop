@@ -1,0 +1,15 @@
+{
+  "request" : {
+    "url" : "/rates/eur/chf",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-eur-chf-chIBC.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Date" : "Fri, 04 Sep 2015 14:01:58 GMT",
+      "Server" : "localhost"
+    }
+  }
+}

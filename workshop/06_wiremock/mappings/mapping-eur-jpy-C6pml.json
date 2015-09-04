@@ -1,0 +1,16 @@
+{
+  "request" : {
+    "url" : "/rates/eur/jpy",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "fixedDelayMilliseconds": 10000,
+    "bodyFileName" : "body-eur-jpy-C6pml.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Date" : "Fri, 04 Sep 2015 14:02:23 GMT",
+      "Server" : "localhost"
+    }
+  }
+}

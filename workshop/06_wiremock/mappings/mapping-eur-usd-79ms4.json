@@ -1,0 +1,15 @@
+{
+  "request" : {
+    "url" : "/rates/eur/usd",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-eur-usd-79ms4.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Date" : "Fri, 04 Sep 2015 14:01:48 GMT",
+      "Server" : "localhost"
+    }
+  }
+}

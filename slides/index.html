@@ -381,13 +381,13 @@ docker run --volumes-from portal ubuntu ls /portal/static
 ### Volumes 
 # https://docs.docker.com/userguide/dockervolumes/
 docker run -d -P --name portal --link rates1:rates -v /portal/static workshop/portal
-docker run --volumes-from=portal ubuntu ls /portal/static
+docker run --volumes-from portal ubuntu ls /portal/static
            </code><code data-trim contenteditable class="bash fragment">
 # what if we want to 're-deploy' portal?
 docker stop portal
-docker run --volumes-from=portal ubuntu ls /portal/static
+docker run --volumes-from portal ubuntu ls /portal/static
 docker rm portal
-docker run --volumes-from=portal ubuntu ls /portal/static
+docker run --volumes-from portal ubuntu ls /portal/static
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -396,14 +396,16 @@ docker run --volumes-from=portal ubuntu ls /portal/static
            <pre><code data-trim contenteditable class="bash">
 ### More 'persistent' volume 
 docker create -v /portal/static --name portal_data ubuntu /bin/true
-docker run -d -P --name portal --link rates1:rates --volumes-from=portal_data workshop/portal
+docker run -d -P --name portal --link rates1:rates --volumes-from portal_data workshop/portal
            </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### TODO show data migration
+### Data migration
+mkdir bak
+docker run --volumes-from portal_data -v $(pwd)/bak:/backup ubuntu cp -r /portal/static /backup
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -411,7 +413,18 @@ docker run -d -P --name portal --link rates1:rates --volumes-from=portal_data wo
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Reusing
-- wiremock from repo
+# https://hub.docker.com/r/ekino/wiremock/
+# https://github.com/ekino/docker-wiremock
+cd 06_wiremock
+           </code><code data-trim contenteditable class="bash fragment">
+docker run -d -P \
+  -v $(pwd)/__files:/wiremock/__files \
+  -v $(pwd)/mappings:/wiremock/mappings \
+  --name mocked_rates \
+  ekino/wiremock
+
+docker run -d -P --link mocked_rates:rates --volumes-from portal_data workshop/portal
+
            </code></pre>
            <div class="spacer"></div>
         </section>

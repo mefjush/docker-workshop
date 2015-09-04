@@ -1,0 +1,15 @@
+{
+  "request" : {
+    "url" : "/rates/eur/xxx",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 500,
+    "bodyFileName" : "body-eur-xxx-vpTqB.json",
+    "headers" : {
+      "Transfer-Encoding" : "chunked",
+      "Date" : "Fri, 04 Sep 2015 14:02:30 GMT",
+      "Server" : "localhost"
+    }
+  }
+}
