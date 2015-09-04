@@ -1,0 +1,8 @@
+portal:
+  build: ../03_portal
+  ports:
+   - "8888:8888"
+  links:
+   - rates
+rates:
+  build: ../02_rates
