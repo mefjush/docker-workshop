@@ -293,7 +293,7 @@ docker run -it workshop/rates
         <section>
            <pre><code data-trim contenteditable class="bash">
 #TODO daemonize
-docker run -d workshop/rates
+docker run -d workshop/rates     # -d will be deprecated soon, try: docker daemon 
 docker ps
 docker logs [CONTAINER_ID]
 #we need to disable python sysout bufferning: python -u server.py 
@@ -431,6 +431,7 @@ docker run -d -P --link mocked_rates:rates --volumes-from portal_data workshop/p
 
         <section> 
             Docker compose
+            http://blog.hypriot.com/post/docker-compose-nodejs-haproxy/
 <!--
 In case of: Illegal instruction: 4
 $ git clone https://github.com/docker/compose.git
@@ -441,11 +442,6 @@ docker-compose version: 1.4.0dev
 -->
 
         </section>  
-
-        <section>
-            Docker compose
-            http://blog.hypriot.com/post/docker-compose-nodejs-haproxy/
-        </section>
 
         <section>
             nsenter
