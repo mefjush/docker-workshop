@@ -307,7 +307,7 @@ docker logs [CONTAINER_ID]
 #TODO modify Dockerfile to EXPOSE a port
 docker run -d -P workshop/rates
 docker ps
-boot2docker ip
+boot2docker ip #or docker-machine ip default
 #access http://[host]:[port]/rates/eur/usd
            </code></pre>
            <div class="spacer"></div>
@@ -362,7 +362,48 @@ docker inspect -f "{{ .HostConfig.Links }}" portal
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Volumes
+### Volumes 
+# https://docs.docker.com/userguide/dockervolumes/
+docker run -d -P --name portal --link rates1:rates -v /portal/static workshop/portal
+docker run --volumes-from portal ubuntu ls /portal/static
+           </code><code data-trim contenteditable class="bash fragment">
+# what if we want to 're-deploy' portal?
+docker stop portal
+docker run --volumes-from portal ubuntu ls /portal/static
+docker rm portal
+docker run --volumes-from portal ubuntu ls /portal/static
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Volumes 
+# https://docs.docker.com/userguide/dockervolumes/
+docker run -d -P --name portal --link rates1:rates -v /portal/static workshop/portal
+docker run --volumes-from=portal ubuntu ls /portal/static
+           </code><code data-trim contenteditable class="bash fragment">
+# what if we want to 're-deploy' portal?
+docker stop portal
+docker run --volumes-from=portal ubuntu ls /portal/static
+docker rm portal
+docker run --volumes-from=portal ubuntu ls /portal/static
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### More 'persistent' volume 
+docker create -v /portal/static --name portal_data ubuntu /bin/true
+docker run -d -P --name portal --link rates1:rates --volumes-from=portal_data workshop/portal
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### TODO show data migration
            </code></pre>
            <div class="spacer"></div>
         </section>
