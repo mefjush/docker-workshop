@@ -325,6 +325,8 @@ docker run -d workshop/rates
 
 docker ps
 docker logs [CONTAINER_ID]
+docker exec [CONTAINER_ID] ps
+docker exec -it [CONTAINER_ID] /bin/bash
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -348,6 +350,13 @@ cd workshop/03_portal
 # TODO look at Dockerfile - anything wrong with it? 
            </code></pre>
            <div class="spacer"></div>
+        </section>
+
+        <section>
+          <h2>Code repetition</h2>
+          <p>Let's extract duplicated code out</p>
+          <p class="fragment">or..</p>
+          <p class="fragment">How about putting it all in one image?</p>
         </section>
 
         <section>
@@ -483,7 +492,6 @@ docker-compose up
           <p><img src="img/elk.jpg"/></p>
         </section>  
 
-
         <section>
            <pre><code data-trim contenteditable class="bash">
 cd workshop/09_metrics  
@@ -493,13 +501,23 @@ docker-compose up
         </section>  
 
         <section>
-            Debugging
-            discuss ssh server and exec 
-        </section>
+          <h2>What did we learn?</h2>
+          <ul>
+            <li>Basic docker commands</li>
+            <li>How to dockerize an app</li>
+            <li>Volumes</li>
+            <li>Links</li>
+            <li>Using docker for rapid 'infrastructure prototyping'</li>
+          </ul>
+        </section> 
 
         <section>
-            UI
-            Kitematic, Panamamax
+          <h2>Not covered</h2>
+          <ul>
+            <li>Service discovery, Clustering, Distribution, ...</li>
+            <li>Docker UI (Kitematic, Panamamax, ...)</li>
+            <li>Docker hosting services</li>
+          </ul>
         </section>  
 
         <section>
@@ -512,7 +530,6 @@ docker-compose up
           <p>Frontend developer</p>
           <p><img src="img/adhese.png"/></p>
           <p><a href="http://adhese.com">adhese.com</a></p>
-
         </section>
 
       </div>
