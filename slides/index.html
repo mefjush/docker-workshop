@@ -353,62 +353,28 @@ cd workshop/03_portal
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Super-Dockerfile
+./stop_all.sh
+./rm_all.sh
+
 cd workshop/04_ubuntu_python_web
-# TODO create base Dockerfile
-# TODO modify 02_rates and 03_portal to use it
-# TODO run 'build.sh' and 'run.sh' scripts to test 
+# TODO list: 
+# - edit base Dockerfile
+# - build 'workshop/ubuntu_python_web' image with 'build_all.sh'
+# - modify 02_rates and 03_portal to extend FROM base image 
+# - run 'build_all.sh' and 'start_*.sh' scripts to test 
+
+# test:
+# curl http://[DOCKER_HOST]:8080/rates/eur/usd
+# curl http://[DOCKER_HOST]:8888
            </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Linking
-# https://docs.docker.com/userguide/dockerlinks/
-
-docker run -d --name rates1 workshop/rates          #note no '-P' needed
-docker run --link rates1:rates workshop/portal env
-
-cat 05_links/server.sh
-           </code></pre>
-           <div class="spacer"></div>
-        </section>
-
-        <section>
-           <pre><code data-trim contenteditable class="bash">
-### Let's link rates service to portal
-cp 05_links/server.sh 03_portal/portal/
-# TODO use server.sh in portal Dockerfile
-# TODO build
-# TODO run portal linked to rates service 
-           </code><code data-trim contenteditable class="bash fragment">
-docker run -d -P --name portal --link rates1:rates workshop/portal
-docker inspect -f "{{ .HostConfig.Links }}" portal
-           </code></pre>
-           <div class="spacer"></div>
-        </section>
-
-        <section>
-           <pre><code data-trim contenteditable class="bash">
-### Volumes 
+### Volumes (publishing)
 # https://docs.docker.com/userguide/dockervolumes/
-docker run -d -P --name portal --link rates1:rates -v /portal/static workshop/portal
-docker run --volumes-from portal ubuntu ls /portal/static
-           </code><code data-trim contenteditable class="bash fragment">
-# what if we want to 're-deploy' portal?
-docker stop portal
-docker run --volumes-from portal ubuntu ls /portal/static
-docker rm portal
-docker run --volumes-from portal ubuntu ls /portal/static
-           </code></pre>
-           <div class="spacer"></div>
-        </section>
-
-        <section>
-           <pre><code data-trim contenteditable class="bash">
-### Volumes 
-# https://docs.docker.com/userguide/dockervolumes/
-docker run -d -P --name portal --link rates1:rates -v /portal/static workshop/portal
+docker run -d -p 8888:8888 --name portal -v /portal/static workshop/portal
 docker run --volumes-from portal ubuntu ls /portal/static
            </code><code data-trim contenteditable class="bash fragment">
 # what if we want to 're-deploy' portal?
@@ -424,7 +390,9 @@ docker run --volumes-from portal ubuntu ls /portal/static
            <pre><code data-trim contenteditable class="bash">
 ### More 'persistent' volume 
 docker create -v /portal/static --name portal_data ubuntu /bin/true
-docker run -d -P --name portal --link rates1:rates --volumes-from portal_data workshop/portal
+
+# TODO edit 'start_portal.sh':
+docker run -d -p 8888:8888 --name portal --volumes-from portal_data workshop/portal
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -432,15 +400,36 @@ docker run -d -P --name portal --link rates1:rates --volumes-from portal_data wo
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Data migration
-mkdir bak
-docker run --volumes-from portal_data -v $(pwd)/bak:/backup ubuntu cp -r /portal/static /backup
+mkdir backup
+docker run --volumes-from portal_data -v $(pwd)/backup:/backup ubuntu cp -r /portal/static /backup
            </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
-        Ambassador pattern
-https://docs.docker.com/articles/ambassador_pattern_linking/
+           <pre><code data-trim contenteditable class="bash">
+### Linking
+# https://docs.docker.com/userguide/dockerlinks/
+docker run --link rates:rates workshop/portal env
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Let's link rates service to portal
+cat 05_links/server.sh
+cp 05_links/server.sh 03_portal/portal/
+# TODO use server.sh in portal Dockerfile
+# TODO build
+# TODO run portal linked to rates service 
+           </code><code data-trim contenteditable class="bash fragment">
+# TODO edit 'start_portal.sh':
+docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link rates:rates workshop/portal
+
+docker inspect -f "{{ .HostConfig.Links }}" portal
+           </code></pre>
+           <div class="spacer"></div>
         </section>
 
         <section>
@@ -456,12 +445,24 @@ docker run -d -P \
   --name mocked_rates \
   ekino/wiremock
 
-docker run -d -P --link mocked_rates:rates --volumes-from portal_data workshop/portal
+# TODO edit 'start_portal.sh':
+docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link mocked_rates:rates workshop/portal
 
            </code></pre>
            <div class="spacer"></div>
         </section>
 
+<!--
+        <section>
+### What if I want to change the link in runtime?
+# Ambassador pattern
+# https://docs.docker.com/articles/ambassador_pattern_linking/
+# https://hub.docker.com/r/svendowideit/ambassador/
+
+# TODO edit 'start_portal.sh':
+docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link rates_ambassador:rates workshop/portal
+        </section>
+-->
         <section> 
             Docker compose
             http://blog.hypriot.com/post/docker-compose-nodejs-haproxy/

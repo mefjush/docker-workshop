@@ -57,3 +57,4 @@ target/
 
 /solutions/02_rates/rates
 .vagrant
+.sh~
