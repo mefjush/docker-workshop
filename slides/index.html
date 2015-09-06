@@ -247,19 +247,21 @@ docker push [your_name]/ubuntu_with_new_file
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Interactive mode with tty
-docker run -i -t ubuntu /bin/bash
-vim aaa
-           </code><code data-trim contenteditable class="bash fragment">
-###(ooops! no vim!)
+docker run -it ubuntu /bin/bash
 sudo apt-get update
-sudo apt-get install vim            
+sudo apt-get install htop
+htop
+# TODO try killing htop from another docker container
+           </code><code data-trim contenteditable class="bash fragment">
+# processes are isolated between docker containers
+# but are still just normal processes from host point of view
            </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Find all the filesystem changes introduced by installing vim
+### Find all the changes introduced by installing htop
            </code><code data-trim contenteditable class="bash fragment">
 docker ps -a
 docker diff [CONTAINER_ID]         
@@ -283,10 +285,17 @@ docker run workshop/dockerfile cat some_file.txt
         </section>
 
         <section>
+          <h2>Let's dockerize a small webapp</h2>
+          <ul>
+            <li><strong>rates:</strong> currency rates microservice</li>
+            <li><strong>portal:</strong> currency converter + favicon collector</li>
+          </ul>
+        </section>
+
+        <section>
            <pre><code data-trim contenteditable class="bash">
 ### A simple currency conversion app
 cd workshop/02_rates
-cat rates/readme.txt
 python rates/server.py  #no way it will work
            </code></pre>
            <div class="spacer"></div>
@@ -295,24 +304,27 @@ python rates/server.py  #no way it will work
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Dockerize it!
-#TODO fix the Dockerfile # http://link!!!!
+cat rates/readme.txt
+
+# TODO fix the Dockerfile 
+# https://docs.docker.com/reference/builder/
 
 docker build -t workshop/rates .
 docker run -it workshop/rates 
-#If it works: you'll see: 'http://0.0.0.0:8080/' 
+# if it works: you'll see: 'http://0.0.0.0:8080/' 
            </code><code data-trim contenteditable class="bash fragment">
-#TODO discuss Dockerfile instruction order
+# TODO discuss Dockerfile instruction order
            </code></pre>
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-#TODO daemonize
-docker run -d workshop/rates     # -d will be deprecated soon, try: docker daemon 
+### Run in detached mode
+docker run -d workshop/rates 
+
 docker ps
 docker logs [CONTAINER_ID]
-#we need to disable python sysout bufferning: python -u server.py 
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -320,11 +332,11 @@ docker logs [CONTAINER_ID]
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### How to access it?
-#TODO modify Dockerfile to EXPOSE a port
+# TODO modify Dockerfile to EXPOSE a port
 docker run -d -P workshop/rates
 docker ps
-boot2docker ip #or docker-machine ip default
-#access http://[host]:[port]/rates/eur/usd
+boot2docker ip # or docker-machine ip default
+# access http://[host]:[port]/rates/eur/usd
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -333,7 +345,7 @@ boot2docker ip #or docker-machine ip default
            <pre><code data-trim contenteditable class="bash">
 ### Portal Dockerfile
 cd workshop/03_portal
-#TODO look at Dockerfile - anything wrong with it? 
+# TODO look at Dockerfile - anything wrong with it? 
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -342,9 +354,9 @@ cd workshop/03_portal
            <pre><code data-trim contenteditable class="bash">
 ### Super-Dockerfile
 cd workshop/04_ubuntu_python_web
-#TODO create base Dockerfile
-#TODO modify 02_rates and 03_portal to use it
-#TODO run 'build.sh' and 'run.sh' scripts to test 
+# TODO create base Dockerfile
+# TODO modify 02_rates and 03_portal to use it
+# TODO run 'build.sh' and 'run.sh' scripts to test 
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -456,7 +468,6 @@ docker run -d -P --link mocked_rates:rates --volumes-from portal_data workshop/p
         </section>  
 
         <section>
-            nsenter
             discuss ssh server and exec 
         </section>
 
