@@ -1,0 +1,41 @@
+portal_data:
+  image: ubuntu
+  volumes:
+   - /portal/static
+  command: /bin/true
+
+portal:
+  build: ../03_portal
+  ports:
+   - "8888:8888"
+  links:
+   - rates
+  volumes_from:
+    - portal_data
+
+rates:
+  build: ../02_rates
+  volumes:
+   - /logs
+
+elasticsearch:
+  image: elasticsearch
+  ports:
+   - "9200:9200"
+
+kibana:
+  image: kibana
+  ports:
+   - "9090:5601"
+  links:
+   - elasticsearch
+
+logstash:
+  image: logstash
+  volumes:
+   - ./logstash:/config-dir
+  volumes_from:
+   - rates
+  net: "container:elasticsearch"
+  command: logstash -f /config-dir/logstash.conf
+

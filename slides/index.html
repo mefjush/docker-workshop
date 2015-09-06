@@ -463,12 +463,37 @@ docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link mocke
 docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link rates_ambassador:rates workshop/portal
         </section>
 -->
-        <section> 
-            Docker compose
-            http://blog.hypriot.com/post/docker-compose-nodejs-haproxy/
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Docker compose
+cd workshop/08_compose
+cat docker-compose.yml
+docker-compose up           
+           </code></pre>
+           <div class="spacer"></div>
         </section>  
 
         <section>
+          <h2>Trying out stuff: ELK stack</h2>
+          <ul>
+            <li><strong>e</strong>lasticsearch</li>
+            <li><strong>l</strong>ogstash</li>
+            <li><strong>k</strong>ibana</li>
+          <ul>
+          <p><img src="img/elk.jpg"/></p>
+        </section>  
+
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+cd workshop/09_metrics  
+docker-compose up     
+           </code></pre>
+           <div class="spacer"></div>
+        </section>  
+
+        <section>
+            Debugging
             discuss ssh server and exec 
         </section>
 
@@ -478,32 +503,17 @@ docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link rates
         </section>  
 
         <section>
-          <h2>Image best practices</h2>
-          <ul>
-            <li>stateless (need state -> volume)</li>
-            <li>minimalistic (no unnecessary stuff)</li>
-            <li>no SSHD "for debugging" (contraversive)</li>
-            <li>one process per container (contraversive)</li>
-          </ul>
-        </section>  
-
-        <section>
-          <h2>Links</h2>
-          <ul>
-            <li><a href="https://www.youtube.com/watch?v=Q5POuMHxW-0">Presentation by Solomon Hykes</a></li>
-            <li><a href="https://www.youtube.com/watch?v=VeiUjkiqo9E">Docker video tutorial</a></li>
-            <li><a href="http://blog.sequenceiq.com/blog/2014/07/05/docker-debug-with-nsenter-on-boot2docker/">Docker debugging with nsenter</a></li>
-            <li><a href="http://shipyard-project.com/">Shipyard project</a></li>
-            <li><a href="http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil">SSHD in Docker containers? You're doing it wrong!</a></li>
-            <li><a href="https://news.ycombinator.com/item?id=7950326">SSH Flamewar</a></li>
-            <li><a href="https://linuxcontainers.org/">Linux Containers (LXC)</a>
-          </ul>
-          
-        </section>
-
-        <section>
           <h1>Thank you!</h1>
         </section>  
+
+        <section>
+          <h2>We are hiring</h2>
+          <p>Java developer</p>
+          <p>Frontend developer</p>
+          <p><img src="img/adhese.png"/></p>
+          <p><a href="http://adhese.com">adhese.com</a></p>
+
+        </section>
 
       </div>
 
