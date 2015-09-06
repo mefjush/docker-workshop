@@ -76,12 +76,28 @@
         </section>
 
         <section>
-          <h1>About / Disclaimer</h1>
-          
-          <p>Workshop initially prepared at <a href="http://adhese.com">Adhese</a> </p>
-          <p><img src="img/adhese.png"/> </p>
-          <p>Some pics borrowed from a <a href="http://pointful.github.io/docker-intro"> presentation</a> by John Lewis.</p>
-          
+          <h2>About / Disclaimer</h2>
+          <pre><code data-trim contenteditable class="dockerfile">
+MANTAINER Mateusz Michałowski
+FROM Poland
+WORKDIR Adhese
+
+ADD adhese/docker_techtalk .
+ADD presentation_by_John_Lewis/*.png .  
+# http://pointful.github.io/docker-intro
+
+ENTRYPOINT /dev/null
+	  </code></pre>
+           
+          <p><img src="img/adhese.png"/></p>
+        </section>
+
+        <section>
+          <h1>Before we start</h1>
+          <ol>
+            <li>Install docker <a href="http://docker.com">http://docker.com</a></li>
+            <li>git clone https://github.com/mefjush/docker-workshop.git</li>
+          </ol>
         </section>
 
         <section>
@@ -408,6 +424,11 @@ mkdir bak
 docker run --volumes-from portal_data -v $(pwd)/bak:/backup ubuntu cp -r /portal/static /backup
            </code></pre>
            <div class="spacer"></div>
+        </section>
+
+        <section>
+        Ambassador pattern
+https://docs.docker.com/articles/ambassador_pattern_linking/
         </section>
 
         <section>

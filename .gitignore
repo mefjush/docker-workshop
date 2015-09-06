@@ -56,3 +56,4 @@ docs/_build/
 target/
 
 /solutions/02_rates/rates
+.vagrant
