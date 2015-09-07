@@ -1,5 +1,8 @@
-A backup VM in case of problems with native Docker
+This is a Vagrant machine with preconfigured Docker environment.
+To run it:
 
-To run:
 vagrant up
 vagrant ssh
+docker run hello-world
+
+First run may take a while. So please run it before the workshop (if you decide to use Vagrant).
