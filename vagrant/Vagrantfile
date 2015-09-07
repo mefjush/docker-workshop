@@ -1,4 +1,11 @@
+$script = <<SCRIPT
+curl -sSL https://get.docker.com/ | sh
+curl -L https://github.com/docker/compose/releases/download/VERSION_NUM/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+sudo usermod -aG docker vagrant
+SCRIPT
+
 Vagrant.configure("2") do |config|
     config.vm.box = "phusion/ubuntu-14.04-amd64"
-    config.vm.provision "shell", inline: "curl -sSL https://get.docker.com/ | sh"
+    config.vm.provision "shell", inline: $script
 end
