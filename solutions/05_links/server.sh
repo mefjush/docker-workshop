@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ADDRESS=$...
-PORT=$...
+ADDRESS=$RATES_PORT_8080_TCP_ADDR
+PORT=$RATES_PORT_8080_TCP_PORT
 URL="http://$ADDRESS:$PORT"
 
 echo "Rates service url: ${URL}"

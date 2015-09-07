@@ -400,8 +400,8 @@ docker run --volumes-from portal ubuntu ls /portal/static
 ### More 'persistent' volume 
 docker create -v /portal/static --name portal_data ubuntu /bin/true
 
-# TODO edit 'start_portal.sh':
-docker run -d -p 8888:8888 --name portal --volumes-from portal_data workshop/portal
+# TODO add option to 'start_portal.sh':
+--volumes-from portal_data
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -410,7 +410,8 @@ docker run -d -p 8888:8888 --name portal --volumes-from portal_data workshop/por
            <pre><code data-trim contenteditable class="bash">
 ### Data migration
 mkdir backup
-docker run --volumes-from portal_data -v $(pwd)/backup:/backup ubuntu cp -r /portal/static /backup
+docker run --volumes-from portal_data -v $(pwd)/backup:/backup \
+    ubuntu cp -r /portal/static /backup
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -427,14 +428,16 @@ docker run --link rates:rates workshop/portal env
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Let's link rates service to portal
+docker run --link rates:rates workshop/portal env
 cat 05_links/server.sh
+
+# TODO fix 'server.sh' (use docker env variables)
+
 cp 05_links/server.sh 03_portal/portal/
-# TODO use server.sh in portal Dockerfile
+# TODO use 'server.sh' in portal Dockerfile
 # TODO build
-# TODO run portal linked to rates service 
-           </code><code data-trim contenteditable class="bash fragment">
 # TODO edit 'start_portal.sh':
-docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link rates:rates workshop/portal
+--link rates:rates 
 
 docker inspect -f "{{ .HostConfig.Links }}" portal
            </code></pre>
@@ -447,16 +450,25 @@ docker inspect -f "{{ .HostConfig.Links }}" portal
 # https://hub.docker.com/r/ekino/wiremock/
 # https://github.com/ekino/docker-wiremock
 cd 06_wiremock
+# TODO run mocked rates service using 'ekino/wiremock' image
+
+# to test:
+curl http://[HOST]:8081/rates/eur/usd
            </code><code data-trim contenteditable class="bash fragment">
-docker run -d -P \
+docker run -d -p 8081:8080 \
   -v $(pwd)/__files:/wiremock/__files \
   -v $(pwd)/mappings:/wiremock/mappings \
   --name mocked_rates \
   ekino/wiremock
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
 
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Connect portal to mocked rates service
 # TODO edit 'start_portal.sh':
-docker run -d -p 8888:8888 --name portal --volumes-from portal_data --link mocked_rates:rates workshop/portal
-
+--link mocked_rates:rates 
            </code></pre>
            <div class="spacer"></div>
         </section>
