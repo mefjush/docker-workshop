@@ -1,7 +1,9 @@
 Belgian Community for Software Craftsmanship
 Hands-on session: Introduction to Docker
 
+
 You'll need some setup before the session:
+
 1. Clone this repo
 git clone https://github.com/mefjush/docker-workshop
 
