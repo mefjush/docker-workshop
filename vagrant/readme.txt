@@ -5,4 +5,4 @@ vagrant up
 vagrant ssh
 docker run hello-world
 
-First run may take a while. So please run it before the workshop (if you decide to use Vagrant).
+First run may take some time. Please set it up before the workshop starts.
