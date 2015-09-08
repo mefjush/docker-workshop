@@ -233,6 +233,7 @@ docker diff [CONTAINER NAME/ID]
            <pre><code data-trim contenteditable class="bash">
 ### I want my file back!            
 docker commit [CONTAINER_ID] [your_name]/ubuntu_with_new_file
+docker images
 docker run [your_name]/ubuntu_with_new_file ls       
            </code></pre>
            <div class="spacer"></div>
@@ -251,11 +252,16 @@ docker push [your_name]/ubuntu_with_new_file
            <pre><code data-trim contenteditable class="bash">
 ### Interactive mode with tty
 docker run -it ubuntu /bin/bash
+
+# TODO prepare a 'workshop/htop' image  with 'htop' installed 
 sudo apt-get update
 sudo apt-get install htop
 htop
-# TODO try killing htop from another docker container
+
+# to test:
+docker run -it workshop/htop htop
            </code><code data-trim contenteditable class="bash fragment">
+# DEMO try killing htop from another docker container
 # processes are isolated between docker containers
 # but are still just normal processes from host point of view
            </code></pre>
@@ -264,7 +270,7 @@ htop
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Find all the changes introduced by installing htop
+### TODO find all the changes introduced by installing htop
            </code><code data-trim contenteditable class="bash fragment">
 docker ps -a
 docker diff [CONTAINER_ID]         
