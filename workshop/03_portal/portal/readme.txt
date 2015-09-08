@@ -4,7 +4,7 @@
 # easy_install web.py
 
 ### Running
-python server.py 8888
+python -u server.py 8888
 
 ### Access
 A web-app is running on port 8888
