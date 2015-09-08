@@ -1,2 +1,3 @@
+#source ...
 export PS1='\W$ ' 
-
+export PATH=$PATH:/home/mefju/mefju/docker-workshop/slides/bin
