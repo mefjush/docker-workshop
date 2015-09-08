@@ -211,15 +211,6 @@ docker ps -a
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Unless...
-docker run --name boring_wozniak ubuntu ls
-	   </code></pre>
-           <div class="spacer"></div>
-
-        </section>
-
-        <section>
-           <pre><code data-trim contenteditable class="bash">
 ### Let's change the state
 docker run ubuntu touch new_file
 docker run ubuntu ls                  
@@ -549,19 +540,28 @@ docker-compose up
         </section> 
 
         <section>
-            <h4><a href="https://github.com/docker/docker/blob/master/pkg/namesgenerator/names-generator.go">Quiz: Which of the following is illegal?</a></h4>
-            <ol><li>boring_wozniak</li><li>sick_darwin</li><li>mad_torvalds</li></ol>
-            <div class="spacer"></div>
-        </section>
-
-        <section>
           <h2>We didn't cover</h2>
           <ul>
             <li>Service discovery, clustering, distribution, ...</li>
             <li>Docker UI (Kitematic, Panamamax, ...)</li>
             <li>Docker hosting services</li>
           </ul>
-        </section>  
+        </section>
+
+
+        <section>
+            <h4><a href="https://github.com/docker/docker/blob/master/pkg/namesgenerator/names-generator.go">Quiz: Which of the following is illegal?</a></h4>
+            <ol><li>boring_wozniak</li><li>sick_darwin</li><li>mad_torvalds</li></ol>
+            <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
+### Unless...
+docker run --name boring_wozniak ubuntu ls
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
 
         <section>
           <h1>Thank you!</h1>
