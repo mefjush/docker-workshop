@@ -6,6 +6,8 @@ RATES_ADDRESS = os.environ.get("SOME_ADDRESS_FROM_SYS_ENV", "localhost")
 RATES_PORT = os.environ.get("SOME_PORT_FROM_SYS_ENV", "8080")
 
 rates_url = "http://" + RATES_ADDRESS + ":" + RATES_PORT
+print "Rates url: " + rates_url
+
 static_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "static")
 render = web.template.render('templates/')
 
