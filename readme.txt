@@ -23,4 +23,4 @@ You'll need some setup before the session:
    docker pull ubuntu
    docker pull ekino/wiremock
 
-   this will save as some time and bandwidth during the workshop ;)
+   this will save us some time and bandwidth during the workshop ;)
