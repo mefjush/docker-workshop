@@ -8,6 +8,6 @@ do
     curr=${currencies[$rnd]}
     curl http://localhost:9000/rates/eur/$curr
     echo " $curr"
-    sleep 5
+    sleep 1
 done
 :
