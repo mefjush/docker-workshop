@@ -18,3 +18,9 @@ You'll need some setup before the session:
 
 3. (Optional) Get Docker-compose 
    https://docs.docker.com/compose/install/
+
+4. Once everything is installed I recommend running the following commands:
+   docker pull ubuntu
+   docker pull ekino/wiremock
+
+   this will save as some time and bandwidth during the workshop ;)
