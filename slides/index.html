@@ -395,7 +395,8 @@ cd workshop/04_ubuntu_python_web
            <pre><code data-trim contenteditable class="bash">
 ### Volumes (publishing)
 # https://docs.docker.com/userguide/dockervolumes/
-docker run -d -p 8888:8888 --name portal -v /portal/static workshop/portal
+docker run -d -p 8888:8888 --name portal \
+           -v /portal/static workshop/portal
 docker run --volumes-from portal ubuntu ls /portal/static
            </code><code data-trim contenteditable class="bash fragment">
 # what if we want to 're-deploy' portal?
