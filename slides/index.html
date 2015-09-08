@@ -443,13 +443,9 @@ docker run --link rates:rates workshop/portal env
            <pre><code data-trim contenteditable class="bash">
 ### Let's link rates service to portal
 docker run --link rates:rates workshop/portal env
-cat 05_links/server.sh
 
-# TODO fix 'server.sh' (use docker env variables)
-
-cp 05_links/server.sh 03_portal/portal/
-# TODO use 'server.sh' in portal Dockerfile
-# TODO build
+# TODO fix '03_portal/server.py' (use docker env variables)
+# TODO rebuild
 # TODO edit 'start_portal.sh':
 --link rates:rates 
 

@@ -2,7 +2,10 @@ import web
 import os
 import urllib
 
-rates_url = os.environ.get('RATES_URL', "http://localhost:8080")
+RATES_ADDRESS = os.environ.get("SOME_ADDRESS_FROM_SYS_ENV", "localhost")
+RATES_PORT = os.environ.get("SOME_PORT_FROM_SYS_ENV", "8080")
+
+rates_url = "http://" + RATES_ADDRESS + ":" + RATES_PORT
 static_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "static")
 render = web.template.render('templates/')
 
