@@ -2,8 +2,8 @@ import web
 import os
 import urllib
 
-RATES_ADDRESS = os.environ.get("SOME_ADDRESS_FROM_SYS_ENV", "localhost")
-RATES_PORT = os.environ.get("SOME_PORT_FROM_SYS_ENV", "8080")
+RATES_ADDRESS = os.environ.get("RATES_PORT_8080_TCP_ADDR", "localhost")
+RATES_PORT = os.environ.get("RATES_PORT_8080_TCP_PORT", "8080")
 
 rates_url = "http://" + RATES_ADDRESS + ":" + RATES_PORT
 print "Rates url: " + rates_url

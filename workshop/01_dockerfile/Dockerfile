@@ -1,2 +1,2 @@
 FROM ubuntu
-COPY ...
+COPY some_file.txt .
