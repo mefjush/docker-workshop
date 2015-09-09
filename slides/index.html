@@ -285,11 +285,11 @@ docker diff [CONTAINER_ID]
 cd workshop/01_dockerfile
 cat Dockerfile
 
-#TODO: let's COPY some_file.txt to your docker image  
+#TODO: let's COPY program.sh to your docker image  
 #see: https://docs.docker.com/reference/builder/#copy
 
 docker build -t workshop/dockerfile .
-docker run workshop/dockerfile cat some_file.txt
+docker run workshop/dockerfile ./program.sh Bob
            </code></pre>
            <div class="spacer"></div>
         </section>
