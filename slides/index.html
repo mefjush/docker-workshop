@@ -375,13 +375,12 @@ cd workshop/03_portal
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Super-Dockerfile
-./stop_all.sh
-./rm_all.sh
+./stop_all_containers.sh
+./rm_all_containers.sh
 
 cd workshop/04_ubuntu_python_web
 # TODO list: 
-# - edit base Dockerfile
-# - build 'workshop/ubuntu_python_web' image with 'build_all.sh'
+# - build 'workshop/ubuntu_python_web' image with 'build.sh'
 # - modify 02_rates and 03_portal to extend FROM base image 
 # - run 'build_all.sh' and 'start_*.sh' scripts to test 
 
