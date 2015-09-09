@@ -393,25 +393,27 @@ cd workshop/04_ubuntu_python_web
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### Volumes (publishing)
-DEMO: disappearing favicons trick
-# https://docs.docker.com/userguide/dockervolumes/
+### DEMO: disappearing favicons trick
+           </code></pre>
+<!--
+<code data-trim contenteditable class="bash fragment">
 docker run -d -p 8888:8888 --name portal \
            -v /portal/static workshop/portal
 docker run --volumes-from portal ubuntu ls /portal/static
-           </code><code data-trim contenteditable class="bash fragment">
 # what if we want to 're-deploy' portal?
 docker stop portal
 docker run --volumes-from portal ubuntu ls /portal/static
 docker rm portal
 docker run --volumes-from portal ubuntu ls /portal/static
-           </code></pre>
+           </code>
+-->
            <div class="spacer"></div>
         </section>
 
         <section>
            <pre><code data-trim contenteditable class="bash">
-### More 'persistent' volume 
+### Volumes 
+# https://docs.docker.com/userguide/dockervolumes/
 docker create -v /portal/static --name portal_data ubuntu /bin/true
 
 # TODO add option to 'start_portal.sh':
