@@ -5,13 +5,13 @@ portal_data:
   command: /bin/true
 
 portal:
-  build: ../03_portal
+  build: ...
   ports:
-   - "8888:8888"
+   - ...
   links:
-   - rates
+   - ...
   volumes_from:
-    - portal_data
+    - ...
 
 rates:
   build: ../02_rates
