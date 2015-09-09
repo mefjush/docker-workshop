@@ -434,9 +434,16 @@ docker run --volumes-from portal_data -v $(pwd)/backup:/backup \
 
         <section>
            <pre><code data-trim contenteditable class="bash">
+### DEMO: broken currency conversion
+           </code></pre>
+           <div class="spacer"></div>
+        </section>
+
+        <section>
+           <pre><code data-trim contenteditable class="bash">
 ### Linking
 # https://docs.docker.com/userguide/dockerlinks/
-docker run --link rates:rates workshop/portal env
+docker run --link rates:rates ubuntu env
            </code></pre>
            <div class="spacer"></div>
         </section>
@@ -444,12 +451,14 @@ docker run --link rates:rates workshop/portal env
         <section>
            <pre><code data-trim contenteditable class="bash">
 ### Let's link rates service to portal
-docker run --link rates:rates workshop/portal env
+docker run --link rates:rates ubuntu env
+
+# TODO edit 'start_portal.sh':
+--link rates:rates 
 
 # TODO fix '03_portal/server.py' (use docker env variables)
 # TODO rebuild
-# TODO edit 'start_portal.sh':
---link rates:rates 
+# TODO rerun
 
 docker inspect -f "{{ .HostConfig.Links }}" portal
            </code></pre>
