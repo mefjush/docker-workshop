@@ -1,6 +1,7 @@
 import web
 import os
 import urllib
+import uuid
 
 RATES_ADDRESS = os.environ.get("SOME_ADDRESS_FROM_SYS_ENV", "localhost")
 RATES_PORT = os.environ.get("SOME_PORT_FROM_SYS_ENV", "8080")
@@ -20,7 +21,7 @@ urls = (
 
 class index:        
     def GET(self):
-        return render.index()
+        return render.index(str(uuid.uuid1()))
 
 class favicons:
     def GET(self):
