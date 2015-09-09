@@ -534,6 +534,16 @@ docker-compose up
         </section>  
 
         <section>
+          <h2>Why is Docker cool?</h2>
+          <ul>
+            <li>Isolation</li>
+            <li>For developer: abstracts out infrastructure (ubuntu, fedora, redhat, ...)</li>
+            <li>For devops - abstracts out code (java, python, node, ...)</li>
+          </ul>
+          <p><img src="img/separation-of-concerns.png"/></p>
+        </section> 
+
+        <section>
           <h2>What did we learn?</h2>
           <ul>
             <li>Basic docker commands</li>
@@ -542,16 +552,6 @@ docker-compose up
             <li>Links</li>
             <li>Using docker for rapid 'infrastructure prototyping'</li>
           </ul>
-        </section> 
-
-        <section>
-          <h2>Why is Docker cool?</h2>
-          <ul>
-            <li>Isolation</li>
-            <li>For developer: abstracts out infrastructure (ubuntu, fedora, redhat, ...)</li>
-            <li>For devops - abstracts out code (java, python, node, ...)</li>
-          </ul>
-          <p><img src="img/separation-of-concerns.png"/></p>
         </section> 
 
         <section>
@@ -565,17 +565,19 @@ docker-compose up
 
 
         <section>
-            <h4><a href="https://github.com/docker/docker/blob/master/pkg/namesgenerator/names-generator.go">Quiz: Which of the following is illegal?</a></h4>
+            <h3><a href="https://github.com/docker/docker/blob/master/pkg/namesgenerator/names-generator.go">Quiz</a></h3>
+            <h4>Which of the following container names is illegal?</h4>
             <ol><li>boring_wozniak</li><li>sick_darwin</li><li>mad_torvalds</li></ol>
-            <div class="spacer"></div>
         </section>
 
         <section>
+           <h3>They are all legal!</h3>
            <pre><code data-trim contenteditable class="bash">
-### Unless...
 docker run --name boring_wozniak ubuntu ls
+docker run --name sick_darwin ubuntu ls
+docker run --name mad_torvalds ubuntu ls
            </code></pre>
-           <div class="spacer"></div>
+           <p class="fragment">...but <a href="https://github.com/docker/docker/blob/master/pkg/namesgenerator/names-generator.go">here's a link</a></p>
         </section>
 
         <section>
